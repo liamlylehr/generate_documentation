@@ -3,10 +3,12 @@ import openai
 import requests
 
 # Load environment variables
-openai.api_key = os.getenv("OPENAI_API_KEY")
 github_token = os.getenv("GITHUB_TOKEN")
 repo = os.getenv("REPO")
 pr_number = os.getenv("PR_NUMBER")
+
+# Initialize OpenAI client
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # Read the diff
 with open("pr_diff.txt", "r") as f:
@@ -21,13 +23,13 @@ in Markdown for the following code changes (diff):
 """
 
 # Call OpenAI API
-response = openai.ChatCompletion.create(
+response = client.chat.completions.create(
     model="gpt-4o-mini",
     messages=[{"role": "user", "content": prompt}],
     temperature=0.2,
 )
 
-docs = response["choices"][0]["message"]["content"]
+docs = resp.choices[0].message.content
 
 # Post comment on PR
 url = f"https://api.github.com/repos/{repo}/issues/{pr_number}/comments"
