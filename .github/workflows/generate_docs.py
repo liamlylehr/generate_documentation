@@ -10,6 +10,8 @@ pr_number = os.getenv("PR_NUMBER")
 # Initialize OpenAI client
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
+print("OpenAI client initialized.", client.api_key is not None, len(client.api_key))
+
 # Read the diff
 with open("pr_diff.txt", "r") as f:
     diff = f.read()
