@@ -1,6 +1,6 @@
 import os
-import openai
 import requests
+from openai import OpenAI
 
 # Load environment variables
 github_token = os.getenv("GITHUB_TOKEN")
