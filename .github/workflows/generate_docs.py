@@ -6,11 +6,10 @@ from openai import OpenAI
 github_token = os.getenv("GITHUB_TOKEN")
 repo = os.getenv("REPO")
 pr_number = os.getenv("PR_NUMBER")
-api_key=os.getenv("OPENAI_API_KEY")
-print("Loaded key?", bool(api_key))
+openai_api_key=os.getenv("OPENAI_API_KEY")
 
 # Initialize OpenAI client
-client = OpenAI(api_key)
+client = OpenAI(api_key=openai_api_key)
 
 
 # Read the diff
