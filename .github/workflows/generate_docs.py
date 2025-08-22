@@ -31,7 +31,7 @@ response = client.chat.completions.create(
     temperature=0.2,
 )
 
-docs = resp.choices[0].message.content
+docs = response.choices[0].message.content
 
 # Post comment on PR
 url = f"https://api.github.com/repos/{repo}/issues/{pr_number}/comments"
